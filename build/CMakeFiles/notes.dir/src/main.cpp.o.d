@@ -221,4 +221,6 @@ CMakeFiles/notes.dir/src/main.cpp.o: \
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/stl_uninitialized.h \
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/stl_vector.h \
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/stl_bvector.h \
- /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/vector.tcc
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/vector.tcc \
+ /home/mxmfrpr/projects/notes/src/modules/commands.cpp \
+ /home/mxmfrpr/projects/notes/src/modules/tasks.cpp

@@ -3,6 +3,8 @@
 
 CMakeFiles/notes.dir/src/main.cpp.o
  /home/mxmfrpr/projects/notes/src/main.cpp
+ /home/mxmfrpr/projects/notes/src/modules/commands.cpp
+ /home/mxmfrpr/projects/notes/src/modules/tasks.cpp
  /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/alloca.h
  /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/asm-generic/errno-base.h
  /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/asm-generic/errno.h

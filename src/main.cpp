@@ -9,7 +9,7 @@
 
 #include "modules/commands.cpp"
 
-using Func = std::function<void(std::vector<std::string>, std::vector<Task>)>;
+using Func = std::function<void(std::vector<std::string>, std::vector<Task> &)>;
 using CommandDictionary = std::vector<std::pair<std::string, Func>>;
 
 std::vector<Task> tasksList;
@@ -27,7 +27,7 @@ int executeCommand(std::vector<std::string> splitCommand,
   }
   for (int i = 0; i < commandDictionary.size(); i++) {
     if (commandDictionary[i].first == splitCommand[0]) {
-      commandDictionary[i].second(splitCommand, &tasksList);
+      commandDictionary[i].second(splitCommand, tasksList);
       return 0;
     }
   };
@@ -48,13 +48,14 @@ int prompt(CommandDictionary commandDictionary, std::vector<Task> &tasksList) {
     splitCommand.push_back(word);
   }
 
-  return executeCommand(splitCommand, commandDictionary, &tasksList);
+  return executeCommand(splitCommand, commandDictionary, tasksList);
 }
 
 int err;
 
 int main() {
-  using Func = std::function<void(std::vector<std::string>, std::vector<Task>)>;
+  using Func =
+      std::function<void(std::vector<std::string>, std::vector<Task> &)>;
   using CommandDictionary = std::vector<std::pair<std::string, Func>>;
   CommandDictionary commandDictionary;
   // commandDictionary.push_back(
@@ -74,7 +75,7 @@ int main() {
   print("Hello, you are using Notes. To learn how to use it, try `help`");
   bool Quit = false;
   while (!Quit) {
-    err = prompt(commandDictionary, &tasksList);
+    err = prompt(commandDictionary, tasksList);
     switch (err) {
     case -1:
       Quit = true;
