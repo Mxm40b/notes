@@ -17,7 +17,8 @@ std::vector<Task> tasksList;
 std::vector<Task> doneTasksList;
 
 int executeCommand(std::vector<std::string> splitCommand,
-                   CommandDictionary commandDictionary) {
+                   CommandDictionary commandDictionary,
+                   std::vector<Task> &tasksList) {
   if (splitCommand[0] == "") {
     return 2;
   }
@@ -33,7 +34,7 @@ int executeCommand(std::vector<std::string> splitCommand,
   return 1;
 };
 
-int prompt(CommandDictionary commandDictionary) {
+int prompt(CommandDictionary commandDictionary, std::vector<Task> &tasksList) {
   std::string command;
   print("> ", 0);
   std::cin >> command;
@@ -47,7 +48,7 @@ int prompt(CommandDictionary commandDictionary) {
     splitCommand.push_back(word);
   }
 
-  return executeCommand(splitCommand, commandDictionary);
+  return executeCommand(splitCommand, commandDictionary, &tasksList);
 }
 
 int err;
@@ -73,7 +74,7 @@ int main() {
   print("Hello, you are using Notes. To learn how to use it, try `help`");
   bool Quit = false;
   while (!Quit) {
-    err = prompt(commandDictionary);
+    err = prompt(commandDictionary, &tasksList);
     switch (err) {
     case -1:
       Quit = true;
