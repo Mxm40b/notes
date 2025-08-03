@@ -7,30 +7,14 @@
 #include <stdlib.h>
 #include <vector>
 
-using Func = std::function<void()>;
-using CommandDictionary = std::vector<std::pair<std::string, Func>>;
+#include "modules/commands.cpp"
 
-class Task {
-public:
-  std::string name;
-  std::chrono::seconds startTime;
-  std::chrono::seconds endTime;
-  int startImportance = 0;
-  int endImportance = 100;
-  double importance;
-};
+using Func = std::function<void(std::vector<std::string>, &std::vector<Task>)>;
+using CommandDictionary = std::vector<std::pair<std::string, Func>>;
 
 std::vector<Task> tasksList;
 
 std::vector<Task> doneTasksList;
-
-void print(std::string text, bool newLine = true) {
-  if (newLine) {
-    std::cout << text << std::endl;
-  } else {
-    std::cout << text;
-  }
-}
 
 int executeCommand(std::vector<std::string> splitCommand,
                    CommandDictionary commandDictionary) {
@@ -42,14 +26,12 @@ int executeCommand(std::vector<std::string> splitCommand,
   }
   for (int i = 0; i < commandDictionary.size(); i++) {
     if (commandDictionary[i].first == splitCommand[0]) {
-      commandDictionary[i].second();
+      commandDictionary[i].second(splitCommand, &tasksList);
       return 0;
     }
   };
   return 1;
 };
-
-void help() { print("This is the help message."); };
 
 int prompt(CommandDictionary commandDictionary) {
   std::string command;
@@ -71,12 +53,22 @@ int prompt(CommandDictionary commandDictionary) {
 int err;
 
 int main() {
-  using Func = std::function<void()>;
+  using Func =
+      std::function<void(std::vector<std::string>, &std::vector<Task>)>;
   using CommandDictionary = std::vector<std::pair<std::string, Func>>;
   CommandDictionary commandDictionary;
   commandDictionary.push_back(
-      {"fuck-you", []() { print("uno reverse card"); }});
-  commandDictionary.emplace_back("help", []() { help(); });
+      {"fuck-you", [](std::vector<std::string>, std::vector<Task> &tasksList) {
+         print("uno reverse card");
+       }});
+  commandDictionary.emplace_back(
+      "help", [](std::vector<std::string> args, std::vector<Task> &tasksList) {
+        help(args);
+      });
+  commandDictionary.emplace_back(
+      "add", [](std::vector<std::string> args, std::vector<Task> &tasksList) {
+        add(args);
+      });
 
   print("Hello, you are using Notes. To learn how to use it, try `help`");
   bool Quit = false;
