@@ -9,7 +9,7 @@
 
 #include "modules/commands.cpp"
 
-using Func = std::function<void(std::vector<std::string>, &std::vector<Task>)>;
+using Func = std::function<void(std::vector<std::string>, std::vector<Task>)>;
 using CommandDictionary = std::vector<std::pair<std::string, Func>>;
 
 std::vector<Task> tasksList;
@@ -53,21 +53,21 @@ int prompt(CommandDictionary commandDictionary) {
 int err;
 
 int main() {
-  using Func =
-      std::function<void(std::vector<std::string>, &std::vector<Task>)>;
+  using Func = std::function<void(std::vector<std::string>, std::vector<Task>)>;
   using CommandDictionary = std::vector<std::pair<std::string, Func>>;
   CommandDictionary commandDictionary;
-  commandDictionary.push_back(
-      {"fuck-you", [](std::vector<std::string>, std::vector<Task> &tasksList) {
-         print("uno reverse card");
-       }});
+  // commandDictionary.push_back(
+  //     {"fuck-you", [](std::vector<std::string>, std::vector<Task> &tasksList)
+  //     {
+  //        print("uno reverse card");
+  //      }});
   commandDictionary.emplace_back(
       "help", [](std::vector<std::string> args, std::vector<Task> &tasksList) {
-        help(args);
+        help(args, tasksList);
       });
   commandDictionary.emplace_back(
       "add", [](std::vector<std::string> args, std::vector<Task> &tasksList) {
-        add(args);
+        add(args, tasksList);
       });
 
   print("Hello, you are using Notes. To learn how to use it, try `help`");
