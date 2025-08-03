@@ -1,0 +1,3 @@
+/home/mxmfrpr/projects/notes/build/CMakeFiles/notes.dir
+/home/mxmfrpr/projects/notes/build/CMakeFiles/edit_cache.dir
+/home/mxmfrpr/projects/notes/build/CMakeFiles/rebuild_cache.dir
