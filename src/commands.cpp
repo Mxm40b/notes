@@ -16,25 +16,31 @@ void exit(std::vector<std::string> splitCommand, GlobalState &state) {
 }
 void add(std::vector<std::string> splitCommand, GlobalState &state) {
   Task taskToAdd;
-  for (size_t i = 1; i < splitCommand.size(); i += 2) {
+  for (size_t i = 1; i + 1 <= splitCommand.size(); i += 2) {
+    if (i + 1 >= splitCommand.size()) {
+      throw std::runtime_error("one argument incomplete: " + splitCommand[i]);
+    }
     std::string arg = (splitCommand[i]);
     std::string argVal = (splitCommand[i + 1]);
-    if (i + 1 > splitCommand.size()) {
-      throw std::runtime_error("one argument incomplete");
+    try {
+      if (arg == "-s") {
+        taskToAdd.startTime = std::chrono::seconds(std::stoi(argVal));
+      } else if (arg == "-e") {
+        taskToAdd.endTime = std::chrono::seconds(std::stoi(argVal));
+      } else if (arg == "-si") {
+        taskToAdd.startImportance = std::stoi(argVal);
+      } else if (arg == "-ei") {
+        taskToAdd.endImportance = std::stoi(argVal);
+      } else if (arg == "-n") {
+        taskToAdd.name = argVal;
+      } else {
+        throw std::runtime_error("invalid argument: " + arg);
+      };
+    } catch (const std::invalid_argument &e) {
+      throw std::runtime_error("not a number: " + argVal);
+    } catch (const std::out_of_range &e) {
+      throw std::runtime_error("number too long: " + argVal);
     }
-    if (arg == "-s") {
-      taskToAdd.startTime = std::chrono::seconds(std::stoi(argVal));
-    } else if (arg == "-e") {
-      taskToAdd.endTime = std::chrono::seconds(std::stoi(argVal));
-    } else if (arg == "-si") {
-      taskToAdd.startImportance = std::stoi(argVal);
-    } else if (arg == "-ei") {
-      taskToAdd.endImportance = std::stoi(argVal);
-    } else if (arg == "-n") {
-      taskToAdd.name = argVal;
-    } else {
-      throw std::runtime_error("invalid argument: " + arg);
-    };
   }
   state.tasksList.emplace_back(taskToAdd);
   std::println(
