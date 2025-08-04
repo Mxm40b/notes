@@ -2,6 +2,7 @@ notes: \
   /nix/store/g2jzxk3s7cnkhh8yq55l4fbvf639zy37-glibc-2.40-66/lib/crt1.o \
   /nix/store/g2jzxk3s7cnkhh8yq55l4fbvf639zy37-glibc-2.40-66/lib/crti.o \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/lib/gcc/x86_64-unknown-linux-gnu/14.3.0/crtbegin.o \
+  CMakeFiles/notes.dir/src/commands.cpp.o \
   CMakeFiles/notes.dir/src/main.cpp.o \
   /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libstdc++.so \
   /nix/store/g2jzxk3s7cnkhh8yq55l4fbvf639zy37-glibc-2.40-66/lib/libm.so \
@@ -36,6 +37,8 @@ notes: \
 /nix/store/g2jzxk3s7cnkhh8yq55l4fbvf639zy37-glibc-2.40-66/lib/crti.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/lib/gcc/x86_64-unknown-linux-gnu/14.3.0/crtbegin.o:
+
+CMakeFiles/notes.dir/src/commands.cpp.o:
 
 CMakeFiles/notes.dir/src/main.cpp.o:
 

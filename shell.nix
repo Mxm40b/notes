@@ -11,13 +11,7 @@ pkgs.mkShell {
     cmake-language-server
     gcc
   ];
-        # export LIBGL_DRIVERS_PATH=${pkgs.mesa}/lib/dri
-        # export LD_LIBRARY_PATH =${pkgs.lib.makeLibraryPath[
-        #   pkgs.glfw
-        #   pkgs.mesa
-        #   pkgs.glew
-        #   pkgs.wayland
-        #   pkgs.wayland-protocols
-        #   pkgs.libGL
-        # ]}
+  shellHook = ''
+    exec nu
+  '';
 }

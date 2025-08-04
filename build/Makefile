@@ -129,6 +129,30 @@ notes/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/notes.dir/build.make CMakeFiles/notes.dir/build
 .PHONY : notes/fast
 
+src/commands.o: src/commands.cpp.o
+.PHONY : src/commands.o
+
+# target to build an object file
+src/commands.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/notes.dir/build.make CMakeFiles/notes.dir/src/commands.cpp.o
+.PHONY : src/commands.cpp.o
+
+src/commands.i: src/commands.cpp.i
+.PHONY : src/commands.i
+
+# target to preprocess a source file
+src/commands.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/notes.dir/build.make CMakeFiles/notes.dir/src/commands.cpp.i
+.PHONY : src/commands.cpp.i
+
+src/commands.s: src/commands.cpp.s
+.PHONY : src/commands.s
+
+# target to generate assembly for a file
+src/commands.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/notes.dir/build.make CMakeFiles/notes.dir/src/commands.cpp.s
+.PHONY : src/commands.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... notes"
+	@echo "... src/commands.o"
+	@echo "... src/commands.i"
+	@echo "... src/commands.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

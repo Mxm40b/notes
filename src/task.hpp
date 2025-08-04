@@ -5,10 +5,10 @@
 
 class Task {
 public:
-  std::string name;
+  std::string name = "Default name";
   std::chrono::seconds startTime;
   std::chrono::seconds endTime;
   int startImportance = 0;
   int endImportance = 100;
-  float importance;
+  float importance = 0.f;
 };

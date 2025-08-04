@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/mxmfrpr/projects/notes/src/commands.cpp" "CMakeFiles/notes.dir/src/commands.cpp.o" "gcc" "CMakeFiles/notes.dir/src/commands.cpp.o.d"
   "/home/mxmfrpr/projects/notes/src/main.cpp" "CMakeFiles/notes.dir/src/main.cpp.o" "gcc" "CMakeFiles/notes.dir/src/main.cpp.o.d"
   "" "notes" "gcc" "CMakeFiles/notes.dir/link.d"
   )

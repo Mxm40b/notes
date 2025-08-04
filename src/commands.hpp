@@ -10,5 +10,10 @@ void help(std::vector<std::string> splitCommand, GlobalState &state);
 struct ExitCommand : public std::exception {
   const char *what() const noexcept override { return "Exit command issued"; }
 };
+
 void exit(std::vector<std::string> splitCommand, GlobalState &state);
+
+void add(std::vector<std::string> splitCommand, GlobalState &state);
+
+void list(std::vector<std::string> splitCommand, GlobalState &state);
 } // namespace cmds

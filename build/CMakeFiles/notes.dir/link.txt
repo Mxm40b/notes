@@ -1,1 +1,1 @@
-/nix/store/7nlf5v84s4p2yhx327j8495yik60qnzh-gcc-wrapper-14.3.0/bin/g++ -Wl,--dependency-file=CMakeFiles/notes.dir/link.d CMakeFiles/notes.dir/src/main.cpp.o -o notes
+/nix/store/7nlf5v84s4p2yhx327j8495yik60qnzh-gcc-wrapper-14.3.0/bin/g++ -Wl,--dependency-file=CMakeFiles/notes.dir/link.d CMakeFiles/notes.dir/src/commands.cpp.o CMakeFiles/notes.dir/src/main.cpp.o -o notes

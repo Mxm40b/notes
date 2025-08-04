@@ -9,6 +9,7 @@
 
 #include "GlobalState.hpp"
 #include "commands.hpp"
+#include "task.hpp"
 
 void executeCommand(std::vector<std::string> splitCommand, GlobalState &state) {
   if (!state.cmdMap.contains(splitCommand[0]))
@@ -18,11 +19,11 @@ void executeCommand(std::vector<std::string> splitCommand, GlobalState &state) {
 };
 
 void prompt(GlobalState &state) {
-  std::string command;
+  std::string commandLine;
   std::print("> ");
-  std::cin >> command;
+  std::getline(std::cin, commandLine);
 
-  std::istringstream iss(command);
+  std::istringstream iss(commandLine);
 
   std::string word;
   std::vector<std::string> splitCommand;
@@ -43,12 +44,15 @@ int main() {
   std::signal(SIGINT, handleInterrupt);
 
   GlobalState state{};
+  state.tasksList.emplace_back();
   auto &cmdMap = state.cmdMap;
   cmdMap["help"] = cmds::help;
   cmdMap["exit"] = cmds::exit;
+  cmdMap["add"] = cmds::add;
+  cmdMap["list"] = cmds::list;
 
   std::println(
-      "Hello, you are using Notes. To learn how to use it, try `help`");
+      "Hello, you are using Notes. To learn how to use it, try `help`\n");
   bool Quit = false;
   while (!Quit) {
     try {

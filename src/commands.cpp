@@ -1,6 +1,7 @@
 #include "commands.hpp"
 
 #include <print>
+#include <stdexcept>
 
 namespace cmds {
 void help(std::vector<std::string> splitCommand, GlobalState &state) {
@@ -11,6 +12,45 @@ void help(std::vector<std::string> splitCommand, GlobalState &state) {
 };
 
 void exit(std::vector<std::string> splitCommand, GlobalState &state) {
-throw ExitCommand{};
+  throw ExitCommand{};
 }
+void add(std::vector<std::string> splitCommand, GlobalState &state) {
+  Task taskToAdd;
+  for (size_t i = 1; i < splitCommand.size(); i += 2) {
+    std::string arg = (splitCommand[i]);
+    std::string argVal = (splitCommand[i + 1]);
+    if (i + 1 > splitCommand.size()) {
+      throw std::runtime_error("one argument incomplete");
+    }
+    if (arg == "-s") {
+      taskToAdd.startTime = std::chrono::seconds(std::stoi(argVal));
+    } else if (arg == "-e") {
+      taskToAdd.endTime = std::chrono::seconds(std::stoi(argVal));
+    } else if (arg == "-si") {
+      taskToAdd.startImportance = std::stoi(argVal);
+    } else if (arg == "-ei") {
+      taskToAdd.endImportance = std::stoi(argVal);
+    } else if (arg == "-n") {
+      taskToAdd.name = argVal;
+    } else {
+      throw std::runtime_error("invalid argument: " + arg);
+    };
+  }
+  state.tasksList.emplace_back(taskToAdd);
+  std::println(
+      "Added task \nwith name: {}, \nwith startTime: {}, \nwith "
+      "endTime:{}, \nwith startImportance:{}, \nwith endImportance:{}\n",
+      taskToAdd.name, taskToAdd.startTime.count(), taskToAdd.endTime.count(),
+      taskToAdd.startImportance, taskToAdd.endImportance);
+}
+void list(std::vector<std::string> splitCommand, GlobalState &state) {
+  for (size_t i = 0; i < state.tasksList.size(); i++) {
+    std::println(
+        "Task {}: \nwith name: {}, \nwith startTime: {}, \nwith "
+        "endTime:{}, \nwith startImportance:{}, \nwith endImportance:{}\n",
+        i + 1, state.tasksList[i].name, state.tasksList[i].startTime.count(),
+        state.tasksList[i].endTime.count(), state.tasksList[i].startImportance,
+        state.tasksList[i].endImportance);
+  }
+};
 } // namespace cmds
