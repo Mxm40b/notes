@@ -11,11 +11,6 @@ pkgs.mkShell {
     cmake-language-server
     gcc
   ];
-
-  shellHook = ''
-        # export CXXFLAGS="-I${pkgs.gcc}/include/c++/${pkgs.gcc.version} -I${pkgs.glibc}/include"
-        exec nu
-  '';
         # export LIBGL_DRIVERS_PATH=${pkgs.mesa}/lib/dri
         # export LD_LIBRARY_PATH =${pkgs.lib.makeLibraryPath[
         #   pkgs.glfw

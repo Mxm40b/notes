@@ -1,42 +1,25 @@
-#include <algorithm>
-#include <chrono>
+#include <csignal>
+#include <cstdlib>
 #include <functional>
 #include <iostream>
-#include <list>
-#include <sstream>
-#include <stdlib.h>
-#include <vector>
+#include <print>
+#include <stdexcept>
+#include <string_view>
+#include <unordered_map>
 
-#include "modules/commands.cpp"
+#include "GlobalState.hpp"
+#include "commands.hpp"
 
-using Func = std::function<void(std::vector<std::string>, std::vector<Task> &)>;
-using CommandDictionary = std::vector<std::pair<std::string, Func>>;
-
-std::vector<Task> tasksList;
-
-std::vector<Task> doneTasksList;
-
-int executeCommand(std::vector<std::string> splitCommand,
-                   CommandDictionary commandDictionary,
-                   std::vector<Task> &tasksList) {
-  if (splitCommand[0] == "") {
-    return 2;
-  }
-  if (splitCommand[0] == "exit") {
-    return -1;
-  }
-  for (int i = 0; i < commandDictionary.size(); i++) {
-    if (commandDictionary[i].first == splitCommand[0]) {
-      commandDictionary[i].second(splitCommand, tasksList);
-      return 0;
-    }
-  };
-  return 1;
+void executeCommand(std::vector<std::string> splitCommand, GlobalState &state) {
+  if (!state.cmdMap.contains(splitCommand[0]))
+    throw std::runtime_error(
+        std::format("Couldnt find command {}", splitCommand[0]));
+  state.cmdMap[splitCommand[0]](splitCommand, state);
 };
 
-int prompt(CommandDictionary commandDictionary, std::vector<Task> &tasksList) {
+void prompt(GlobalState &state) {
   std::string command;
-  print("> ", 0);
+  std::print("> ");
   std::cin >> command;
 
   std::istringstream iss(command);
@@ -48,46 +31,33 @@ int prompt(CommandDictionary commandDictionary, std::vector<Task> &tasksList) {
     splitCommand.push_back(word);
   }
 
-  return executeCommand(splitCommand, commandDictionary, tasksList);
+  executeCommand(splitCommand, state);
 }
 
-int err;
+void handleInterrupt(int signal) {
+  std::println("Quitting.");
+  exit(EXIT_SUCCESS);
+}
 
 int main() {
-  using Func =
-      std::function<void(std::vector<std::string>, std::vector<Task> &)>;
-  using CommandDictionary = std::vector<std::pair<std::string, Func>>;
-  CommandDictionary commandDictionary;
-  // commandDictionary.push_back(
-  //     {"fuck-you", [](std::vector<std::string>, std::vector<Task> &tasksList)
-  //     {
-  //        print("uno reverse card");
-  //      }});
-  commandDictionary.emplace_back(
-      "help", [](std::vector<std::string> args, std::vector<Task> &tasksList) {
-        help(args, tasksList);
-      });
-  commandDictionary.emplace_back(
-      "add", [](std::vector<std::string> args, std::vector<Task> &tasksList) {
-        add(args, tasksList);
-      });
+  std::signal(SIGINT, handleInterrupt);
 
-  print("Hello, you are using Notes. To learn how to use it, try `help`");
+  GlobalState state{};
+  auto &cmdMap = state.cmdMap;
+  cmdMap["help"] = cmds::help;
+  cmdMap["exit"] = cmds::exit;
+
+  std::println(
+      "Hello, you are using Notes. To learn how to use it, try `help`");
   bool Quit = false;
   while (!Quit) {
-    err = prompt(commandDictionary, tasksList);
-    switch (err) {
-    case -1:
-      Quit = true;
-      break;
-    case 1:
-      print("Command not found");
-      break;
-    case 2:
-      print("No command inserted");
-      break;
-    default:
-      break;
+    try {
+      prompt(state);
+    } catch (const cmds::ExitCommand &) {
+      std::println("Quitting.");
+      break; // Exit the loop on exit command
+    } catch (const std::runtime_error &e) {
+      std::println("{}", e.what()); // Handle actual errors
     }
   }
   return 0;
