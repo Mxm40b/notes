@@ -1,0 +1,3 @@
+/home/kekw/notes/out/Debug/CMakeFiles/notes.dir
+/home/kekw/notes/out/Debug/CMakeFiles/edit_cache.dir
+/home/kekw/notes/out/Debug/CMakeFiles/rebuild_cache.dir

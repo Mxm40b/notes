@@ -4,15 +4,12 @@ project("notes")
 
 
 
-set(SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/src")
-set(SOURCES ${SRC_DIR}/main.cpp ${SRC_DIR}/modules/)
-
-
+file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 set_target_properties(
   ${PROJECT_NAME}
-  PROPERTIES CXX_STANDARD 14
+  PROPERTIES CXX_STANDARD 23
              CXX_STANDARD_REQUIRED OFF
              CXX_EXTENSIONS ON)

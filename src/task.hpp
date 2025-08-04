@@ -1,11 +1,7 @@
-#include <algorithm>
+#pragma once
+
 #include <chrono>
-#include <functional>
-#include <iostream>
-#include <list>
-#include <sstream>
-#include <stdlib.h>
-#include <vector>
+#include <string>
 
 class Task {
 public:
@@ -14,5 +10,5 @@ public:
   std::chrono::seconds endTime;
   int startImportance = 0;
   int endImportance = 100;
-  double importance;
+  float importance;
 };
