@@ -66,10 +66,14 @@ int main() {
   state.tasksList.emplace_back();
   auto &cmdMap = state.cmdMap;
   cmdMap["help"] = cmds::help;
+  cmdMap["help"] = cmds::help;
   cmdMap["exit"] = cmds::exit;
+  cmdMap["quit"] = cmds::exit;
   cmdMap["add"] = cmds::add;
   cmdMap["list"] = cmds::list;
+  cmdMap["ls"] = cmds::list;
   cmdMap["current"] = cmds::current;
+  cmdMap["now"] = cmds::current;
 
   std::println(
       "Hello, you are using Notes. To learn how to use it, try `help`\n");
