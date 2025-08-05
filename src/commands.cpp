@@ -21,7 +21,8 @@ std::string formatTime(std::chrono::year_month_day ymd) {
 }
 std::string formatTime(std::chrono::seconds time) {
   std::chrono::sys_time<std::chrono::seconds> sysTime{time};
-  std::chrono::zoned_time<std::chrono::seconds> zonedTime{sysTime};
+  std::chrono::zoned_time<std::chrono::seconds> zonedTime{
+      std::chrono::current_zone(), sysTime};
   return formatTime(zonedTime.get_local_time());
 }
 std::chrono::year intToYear(int year_int) {
@@ -76,6 +77,23 @@ std::chrono::year_month_day readDate(std::string date, GlobalState &state) {
   throw std::runtime_error("invalid date: " + date);
 };
 
+std::chrono::seconds readTime(std::string time, GlobalState &state) {
+  char sep;
+  int minutes_int;
+  int hours_int;
+
+  std::istringstream ss(time);
+
+  if (ss >> hours_int >> sep >> minutes_int && sep == ':') {
+    if (minutes_int >= 0 && minutes_int < 60 && hours_int >= 0 &&
+        hours_int < 24) {
+      return std::chrono::seconds(std::chrono::hours{hours_int} +
+                                  std::chrono::minutes{minutes_int});
+    }
+  }
+  throw std::runtime_error("invalid time: " + time);
+}
+
 void help(std::vector<std::string> splitCommand, GlobalState &state) {
   std::println("This is the help message.\n"
                "To exit, try `exit`.\n"
@@ -89,6 +107,15 @@ void exit(std::vector<std::string> splitCommand, GlobalState &state) {
 
 void add(std::vector<std::string> splitCommand, GlobalState &state) {
   Task taskToAdd;
+  std::chrono::local_time<std::chrono::seconds> startDate =
+      floor<std::chrono::days>(state.localTime);
+  std::chrono::local_time<std::chrono::seconds> endDate =
+      startDate + std::chrono::days{1};
+
+  std::chrono::seconds startTime =
+      floor<std::chrono::seconds>(state.localTime) - startDate;
+  std::chrono::seconds endTime = startTime + std::chrono::days{1};
+
   for (size_t i = 1; i + 1 <= splitCommand.size(); i += 2) {
     if (i + 1 >= splitCommand.size()) {
       throw std::runtime_error("one argument incomplete: " + splitCommand[i]);
@@ -96,10 +123,14 @@ void add(std::vector<std::string> splitCommand, GlobalState &state) {
     std::string arg = (splitCommand[i]);
     std::string argVal = (splitCommand[i + 1]);
     try {
-      if (arg == "-s") {
-        taskToAdd.startTime = std::chrono::seconds(std::stoi(argVal));
-      } else if (arg == "-e") {
-        taskToAdd.endTime = std::chrono::seconds(std::stoi(argVal));
+      if (arg == "-sd") {
+        startDate = std::chrono::local_days{readDate(argVal, state)};
+      } else if (arg == "-ed") {
+        endDate = std::chrono::local_days{readDate(argVal, state)};
+      } else if (arg == "-st") {
+        startTime = readTime(argVal, state);
+      } else if (arg == "-et") {
+        endTime = readTime(argVal, state);
       } else if (arg == "-si") {
         taskToAdd.startImportance = std::stoi(argVal);
       } else if (arg == "-ei") {
@@ -115,6 +146,10 @@ void add(std::vector<std::string> splitCommand, GlobalState &state) {
       throw std::runtime_error("number too long: " + argVal);
     }
   }
+
+  taskToAdd.startTime = startDate.time_since_epoch() + startTime;
+  taskToAdd.endTime = endDate.time_since_epoch() + endTime;
+
   state.tasksList.emplace_back(taskToAdd);
   std::println(
       "Added task \nwith name: {}, \nwith startTime: {}, \nwith "

@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <csignal>
 #include <cstdlib>
 #include <functional>
@@ -82,6 +83,10 @@ int main() {
       "Hello, you are using Notes. To learn how to use it, try `help`\n");
   while (true) {
     updateImportance(state);
+    struct {
+      bool operator()(Task &a, Task &b) { return a.importance > b.importance; }
+    } sortTask;
+    std::sort(state.tasksList.begin(), state.tasksList.end(), sortTask);
     try {
       prompt(state);
     } catch (const cmds::ExitCommand &) {

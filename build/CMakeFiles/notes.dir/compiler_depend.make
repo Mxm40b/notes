@@ -405,6 +405,7 @@ CMakeFiles/notes.dir/src/main.cpp.o: /home/mxmfrpr/projects/notes/src/main.cpp \
   /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/unistd.h \
   /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wchar.h \
   /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wctype.h \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/algorithm \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/array \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/backward/binders.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bit \
@@ -465,6 +466,7 @@ CMakeFiles/notes.dir/src/main.cpp.o: /home/mxmfrpr/projects/notes/src/main.cpp \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ptr_traits.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/quoted_string.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/range_access.h \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algo.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algobase.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_base.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_cmp.h \
@@ -543,6 +545,8 @@ CMakeFiles/notes.dir/src/main.cpp.o: /home/mxmfrpr/projects/notes/src/main.cpp \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/optional \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ostream \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/print \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/execution_defs.h \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/glue_algorithm_defs.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/pstl_config.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ratio \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/span \
@@ -614,6 +618,10 @@ notes: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libgcc_s.s
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/iostream:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/csignal:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algo.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/algorithm:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/unistd.h:
 
@@ -1007,6 +1015,8 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/hashtable_policy.h:
 
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/execution_defs.h:
+
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/sigaction.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/functexcept.h:
@@ -1210,6 +1220,8 @@ CMakeFiles/notes.dir/src/commands.cpp.o:
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/functional:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/locale:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/glue_algorithm_defs.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/optional:
 
