@@ -12,8 +12,11 @@
 #include "task.hpp"
 
 void updateImportance(GlobalState &state) {
-  state.currentTime = std::chrono::duration_cast<std::chrono::seconds>(
-      std::chrono::system_clock::now().time_since_epoch());
+  state.currentTime =
+      floor<std::chrono::seconds>(std::chrono::system_clock::now());
+  state.localTime =
+      std::chrono::zoned_time{std::chrono::current_zone(), state.currentTime}
+          .get_local_time();
   for (size_t i = 0; i + 1 <= state.tasksList.size(); i++) {
     if (!state.tasksList.empty() ||
         (state.tasksList[i].endTime - state.tasksList[i].startTime).count() !=
@@ -23,8 +26,8 @@ void updateImportance(GlobalState &state) {
            state.tasksList[i].startImportance) /
           (state.tasksList[i].endTime - state.tasksList[i].startTime).count();
       state.tasksList[i].importance =
-          slope * state.currentTime.count() +
-          slope * state.tasksList[i].startTime.count() -
+          slope * state.currentTime.time_since_epoch().count() -
+          slope * state.tasksList[i].startTime.count() +
           state.tasksList[i].startImportance;
     }
   }

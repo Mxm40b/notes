@@ -1,6 +1,7 @@
 #include "commands.hpp"
 
 #include <chrono>
+#include <format>
 #include <print>
 #include <stdexcept>
 
@@ -63,8 +64,11 @@ void list(std::vector<std::string> splitCommand, GlobalState &state) {
 };
 
 void current(std::vector<std::string> splitCommand, GlobalState &state) {
-  std::println("{}", std::chrono::duration_cast<std::chrono::seconds>(
-                         std::chrono::system_clock::now().time_since_epoch()));
+  // std::println("{}", std::chrono::duration_cast<std::chrono::seconds>(
+  // std::chrono::system_clock::now().time_since_epoch()));
+  std::string formattedTime =
+      std::format("{:%d/%m at %H:%M:%S}", state.localTime);
+  std::println("{}", formattedTime);
 };
 
 } // namespace cmds
