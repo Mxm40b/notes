@@ -266,4 +266,6 @@ CMakeFiles/notes.dir/src/commands.cpp.o: \
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/erase_if.h \
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/move_only_function.h \
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/mofunc_impl.h \
- /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/print
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/print \
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/utility \
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/stl_relops.h

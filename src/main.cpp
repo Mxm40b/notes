@@ -18,7 +18,7 @@ void updateImportance(GlobalState &state) {
       std::chrono::zoned_time{std::chrono::current_zone(), state.currentTime}
           .get_local_time();
   for (size_t i = 0; i + 1 <= state.tasksList.size(); i++) {
-    if (!state.tasksList.empty() ||
+    if (!state.tasksList.empty() &&
         (state.tasksList[i].endTime - state.tasksList[i].startTime).count() !=
             0) {
       long double slope =
