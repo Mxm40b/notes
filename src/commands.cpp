@@ -1,5 +1,6 @@
 #include "commands.hpp"
 
+#include <chrono>
 #include <print>
 #include <stdexcept>
 
@@ -53,10 +54,17 @@ void list(std::vector<std::string> splitCommand, GlobalState &state) {
   for (size_t i = 0; i < state.tasksList.size(); i++) {
     std::println(
         "Task {}: \nwith name: {}, \nwith startTime: {}, \nwith "
-        "endTime:{}, \nwith startImportance:{}, \nwith endImportance:{}\n",
+        "endTime: {}, \nwith startImportance: {}, \nwith endImportance: {},\n"
+        "with importance: {}\n",
         i + 1, state.tasksList[i].name, state.tasksList[i].startTime.count(),
         state.tasksList[i].endTime.count(), state.tasksList[i].startImportance,
-        state.tasksList[i].endImportance);
+        state.tasksList[i].endImportance, state.tasksList[i].importance);
   }
 };
+
+void current(std::vector<std::string> splitCommand, GlobalState &state) {
+  std::println("{}", std::chrono::duration_cast<std::chrono::seconds>(
+                         std::chrono::system_clock::now().time_since_epoch()));
+};
+
 } // namespace cmds

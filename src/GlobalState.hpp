@@ -1,11 +1,13 @@
 #pragma once
 
 #include "task.hpp"
+#include <chrono>
 
 #include <functional>
 #include <vector>
 
 struct GlobalState {
+  std::chrono::seconds currentTime;
   std::vector<Task> tasksList;
   std::vector<Task> doneTasksList;
 

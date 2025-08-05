@@ -11,6 +11,25 @@
 #include "commands.hpp"
 #include "task.hpp"
 
+void updateImportance(GlobalState &state) {
+  state.currentTime = std::chrono::duration_cast<std::chrono::seconds>(
+      std::chrono::system_clock::now().time_since_epoch());
+  for (size_t i = 0; i + 1 <= state.tasksList.size(); i++) {
+    if (!state.tasksList.empty() ||
+        (state.tasksList[i].endTime - state.tasksList[i].startTime).count() !=
+            0) {
+      long double slope =
+          (state.tasksList[i].endImportance -
+           state.tasksList[i].startImportance) /
+          (state.tasksList[i].endTime - state.tasksList[i].startTime).count();
+      state.tasksList[i].importance =
+          slope * state.currentTime.count() +
+          slope * state.tasksList[i].startTime.count() -
+          state.tasksList[i].startImportance;
+    }
+  }
+};
+
 void executeCommand(std::vector<std::string> splitCommand, GlobalState &state) {
   if (!state.cmdMap.contains(splitCommand[0]))
     throw std::runtime_error(
@@ -50,11 +69,12 @@ int main() {
   cmdMap["exit"] = cmds::exit;
   cmdMap["add"] = cmds::add;
   cmdMap["list"] = cmds::list;
+  cmdMap["current"] = cmds::current;
 
   std::println(
       "Hello, you are using Notes. To learn how to use it, try `help`\n");
-  bool Quit = false;
-  while (!Quit) {
+  while (true) {
+    updateImportance(state);
     try {
       prompt(state);
     } catch (const cmds::ExitCommand &) {
