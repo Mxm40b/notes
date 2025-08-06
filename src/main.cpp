@@ -74,6 +74,7 @@ int main() {
   cmdMap["exit"] = cmds::exit;
   cmdMap["quit"] = cmds::exit;
   cmdMap["add"] = cmds::add;
+  cmdMap["edit"] = cmds::edit;
   cmdMap["list"] = cmds::list;
   cmdMap["ls"] = cmds::list;
   cmdMap["current"] = cmds::current;

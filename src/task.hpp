@@ -15,3 +15,8 @@ public:
   int endImportance = 100;
   double importance = 0.f;
 };
+
+class TaskCategory {
+  std::string name = "Default category name";
+  std::vector<Task> tasksList;
+};

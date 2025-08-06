@@ -13,6 +13,7 @@ struct GlobalState {
   std::chrono::local_time<std::chrono::seconds> localTime =
       std::chrono::zoned_time{std::chrono::current_zone(), currentTime}
           .get_local_time();
+  std::vector<TaskCategory> CategoriesList;
   std::vector<Task> tasksList;
   std::vector<Task> doneTasksList;
 

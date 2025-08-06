@@ -15,6 +15,8 @@ void exit(std::vector<std::string> splitCommand, GlobalState &state);
 
 void add(std::vector<std::string> splitCommand, GlobalState &state);
 
+void edit(std::vector<std::string> splitCommand, GlobalState &state);
+
 void list(std::vector<std::string> splitCommand, GlobalState &state);
 
 void current(std::vector<std::string> splitCommand, GlobalState &state);
