@@ -1,6 +1,7 @@
 #include "commands.hpp"
 #include "GlobalState.hpp"
 
+#include <algorithm>
 #include <chrono>
 #include <exception>
 #include <format>
@@ -161,7 +162,12 @@ void add(std::vector<std::string> splitCommand, GlobalState &state) {
 
 void edit(std::vector<std::string> splitCommand, GlobalState &state) {
 
-  Task taskToEdit = state.tasksList.at(std::stoi(splitCommand[1]));
+  std::vector<Task>::iterator taskToEdit =
+      std::find_if(state.tasksList.begin(), state.tasksList.end(),
+                   [&](const Task &t) { return t.name == splitCommand[1]; });
+  if (taskToEdit == state.tasksList.end()) {
+    throw std::runtime_error("Task does not exist: " + splitCommand[1]);
+  };
   std::chrono::local_time<std::chrono::seconds> startDate =
       floor<std::chrono::days>(state.localTime);
   std::chrono::local_time<std::chrono::seconds> endDate =
@@ -187,11 +193,11 @@ void edit(std::vector<std::string> splitCommand, GlobalState &state) {
       } else if (arg == "-et") {
         endTime = readTime(argVal, state);
       } else if (arg == "-si") {
-        taskToEdit.startImportance = std::stoi(argVal);
+        taskToEdit->startImportance = std::stoi(argVal);
       } else if (arg == "-ei") {
-        taskToEdit.endImportance = std::stoi(argVal);
+        taskToEdit->endImportance = std::stoi(argVal);
       } else if (arg == "-n") {
-        taskToEdit.name = argVal;
+        taskToEdit->name = argVal;
       } else {
         throw std::runtime_error("invalid argument: " + arg);
       };
@@ -202,16 +208,15 @@ void edit(std::vector<std::string> splitCommand, GlobalState &state) {
     }
   }
 
-  taskToEdit.startTime = startDate.time_since_epoch() + startTime;
-  taskToEdit.endTime = endDate.time_since_epoch() + endTime;
+  taskToEdit->startTime = startDate.time_since_epoch() + startTime;
+  taskToEdit->endTime = endDate.time_since_epoch() + endTime;
 
-  state.tasksList.at(std::stoi(splitCommand[1])) = taskToEdit;
   std::println(
       "Edited task {} \nwith name: {}, \nwith startTime: {}, \nwith "
       "endTime:{}, \nwith startImportance:{}, \nwith endImportance:{}\n",
-      std::stoi(splitCommand[1]), taskToEdit.name,
-      formatTime(taskToEdit.startTime), formatTime(taskToEdit.endTime),
-      taskToEdit.startImportance, taskToEdit.endImportance);
+      splitCommand[1], taskToEdit->name, formatTime(taskToEdit->startTime),
+      formatTime(taskToEdit->endTime), taskToEdit->startImportance,
+      taskToEdit->endImportance);
 };
 
 void list(std::vector<std::string> splitCommand, GlobalState &state) {

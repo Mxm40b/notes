@@ -103,6 +103,7 @@ CMakeFiles/notes.dir/src/commands.cpp.o
  /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/time.h
  /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wchar.h
  /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wctype.h
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/algorithm
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/array
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/backward/binders.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bit
@@ -163,6 +164,7 @@ CMakeFiles/notes.dir/src/commands.cpp.o
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ptr_traits.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/quoted_string.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/range_access.h
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algo.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algobase.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_base.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_cmp.h
@@ -240,6 +242,8 @@ CMakeFiles/notes.dir/src/commands.cpp.o
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/optional
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ostream
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/print
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/execution_defs.h
+ /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/glue_algorithm_defs.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/pstl_config.h
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ratio
  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/span

@@ -102,6 +102,7 @@ CMakeFiles/notes.dir/src/commands.cpp.o: /home/mxmfrpr/projects/notes/src/comman
   /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/time.h \
   /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wchar.h \
   /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wctype.h \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/algorithm \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/array \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/backward/binders.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bit \
@@ -162,6 +163,7 @@ CMakeFiles/notes.dir/src/commands.cpp.o: /home/mxmfrpr/projects/notes/src/comman
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ptr_traits.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/quoted_string.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/range_access.h \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algo.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algobase.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_base.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_cmp.h \
@@ -239,6 +241,8 @@ CMakeFiles/notes.dir/src/commands.cpp.o: /home/mxmfrpr/projects/notes/src/comman
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/optional \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ostream \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/print \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/execution_defs.h \
+  /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/glue_algorithm_defs.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/pstl_config.h \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ratio \
   /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/span \
@@ -619,10 +623,6 @@ notes: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libgcc_s.s
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/csignal:
 
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algo.h:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/algorithm:
-
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/unistd.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/linux/close_range.h:
@@ -679,8 +679,6 @@ notes: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libgcc_s.s
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/c++locale.h:
 
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/exception_ptr.h:
-
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/exception_defines.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/siginfo-arch.h:
@@ -735,6 +733,10 @@ notes: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libgcc_s.s
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/types/__mbstate_t.h:
 
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/algorithm:
+
+/nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/pthreadtypes-arch.h:
+
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/wctype.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/types/__sigset_t.h:
@@ -756,6 +758,12 @@ notes: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libgcc_s.s
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/cpu_defines.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/stdio.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ostream:
+
+/nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/stdint.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/hash_bytes.h:
 
@@ -784,6 +792,10 @@ notes: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libgcc_s.s
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/types/sigset_t.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/select2.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/c++config.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ext/aligned_buffer.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/waitstatus.h:
 
@@ -855,10 +867,6 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/types/clockid_t.h:
 
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ext/aligned_buffer.h:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/c++config.h:
-
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/sys/cdefs.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/pthread.h:
@@ -882,6 +890,10 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/functional_hash.h:
 
 /home/mxmfrpr/projects/notes/src/GlobalState.hpp:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/vector:
+
+/home/mxmfrpr/projects/notes/src/commands.hpp:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/mofunc_impl.h:
 
@@ -916,8 +928,6 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/floatn.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/types/struct_itimerspec.h:
-
-/nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/pthreadtypes-arch.h:
 
 /nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/stdlib-float.h:
 
@@ -1015,15 +1025,15 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/hashtable_policy.h:
 
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/execution_defs.h:
-
-/nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/sigaction.h:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/functexcept.h:
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/exception_ptr.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/hashtable.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ctime:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/atomic_word.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/invoke.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/unicode-data.h:
 
@@ -1072,6 +1082,8 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/uses_allocator_args.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ptr_traits.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_algo.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/ranges_base.h:
 
@@ -1143,12 +1155,6 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/chrono:
 
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/ostream:
-
-/nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/stdint.h:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:
-
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/clocale:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/compare:
@@ -1193,10 +1199,6 @@ CMakeFiles/notes.dir/src/main.cpp.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/iomanip:
 
-/home/mxmfrpr/projects/notes/src/commands.hpp:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/vector:
-
 CMakeFiles/notes.dir/src/commands.cpp.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/iosfwd:
@@ -1227,6 +1229,12 @@ CMakeFiles/notes.dir/src/commands.cpp.o:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/print:
 
+/nix/store/vm10zh43xgfxvgrqs8brz6v6xyrq9qin-glibc-2.40-66-dev/include/bits/sigaction.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/functexcept.h:
+
+/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/pstl/execution_defs.h:
+
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/cpp_type_traits.h:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/sstream:
@@ -1248,7 +1256,3 @@ CMakeFiles/notes.dir/src/commands.cpp.o:
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/tuple:
 
 /nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/unordered_map:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/bits/invoke.h:
-
-/nix/store/xvqbvva4djgyascjsnki6354422n4msk-gcc-14.3.0/include/c++/14.3.0/x86_64-unknown-linux-gnu/bits/atomic_word.h:
