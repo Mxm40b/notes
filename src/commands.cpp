@@ -137,6 +137,13 @@ void add(std::vector<std::string> splitCommand, GlobalState &state) {
       } else if (arg == "-ei") {
         taskToAdd.endImportance = std::stoi(argVal);
       } else if (arg == "-n") {
+
+        std::vector<Task>::iterator taskToEdit = std::find_if(
+            state.tasksList.begin(), state.tasksList.end(),
+            [&](const Task &t) { return t.name == splitCommand[1]; });
+        if (taskToEdit != state.tasksList.end()) {
+          throw std::runtime_error("Task already exists: " + splitCommand[1]);
+        };
         taskToAdd.name = argVal;
       } else {
         throw std::runtime_error("invalid argument: " + arg);

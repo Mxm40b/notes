@@ -6,7 +6,7 @@
 
 class Task {
 public:
-  std::string name = "Default name";
+  std::string name = "Default_name";
   std::chrono::seconds startTime =
       std::chrono::duration_cast<std::chrono::seconds>(
           std::chrono::system_clock::now().time_since_epoch());
