@@ -12,6 +12,7 @@
 #include <utility>
 
 namespace cmds {
+
 std::string formatTime(std::chrono::local_time<std::chrono::seconds> time) {
   return std::format("{:%d/%m at %H:%M:%S}", time);
 }
@@ -106,6 +107,66 @@ void exit(std::vector<std::string> splitCommand, GlobalState &state) {
   throw ExitCommand{};
 }
 
+void editTask(std::vector<std::string> splitCommand, Task &task,
+              GlobalState &state) {
+  std::chrono::local_time<std::chrono::seconds> startDate =
+      floor<std::chrono::days>(state.localTime);
+  std::chrono::local_time<std::chrono::seconds> endDate =
+      startDate + std::chrono::days{1};
+
+  std::chrono::seconds startTime =
+      floor<std::chrono::seconds>(state.localTime) - startDate;
+  std::chrono::seconds endTime = startTime + std::chrono::days{1};
+
+  for (size_t i = 1; i + 1 <= splitCommand.size(); i += 2) {
+    if (i + 1 >= splitCommand.size()) {
+      throw std::runtime_error("one argument incomplete: " + splitCommand[i]);
+    }
+    std::string arg = (splitCommand[i]);
+    std::string argVal = (splitCommand[i + 1]);
+    try {
+      if (arg == "-sd") {
+        startDate = std::chrono::local_days{readDate(argVal, state)};
+      } else if (arg == "-ed") {
+        endDate = std::chrono::local_days{readDate(argVal, state)};
+      } else if (arg == "-st") {
+        startTime = readTime(argVal, state);
+      } else if (arg == "-et") {
+        endTime = readTime(argVal, state);
+      } else if (arg == "-si") {
+        task.startImportance = std::stoi(argVal);
+      } else if (arg == "-ei") {
+        task.endImportance = std::stoi(argVal);
+      } else if (arg == "-n") {
+
+        std::vector<Task>::iterator taskToEdit = std::find_if(
+            state.tasksList.begin(), state.tasksList.end(),
+            [&](const Task &t) { return t.name == splitCommand[1]; });
+        if (taskToEdit != state.tasksList.end()) {
+          throw std::runtime_error("Task already exists: " + splitCommand[1]);
+        };
+        task.name = argVal;
+      } else {
+        throw std::runtime_error("invalid argument: " + arg);
+      };
+    } catch (const std::invalid_argument &e) {
+      throw std::runtime_error("not a number: " + argVal);
+    } catch (const std::out_of_range &e) {
+      throw std::runtime_error("number too long: " + argVal);
+    }
+  }
+
+  task.startTime = startDate.time_since_epoch() + startTime;
+  task.endTime = endDate.time_since_epoch() + endTime;
+
+  state.tasksList.emplace_back(task);
+  std::println(
+      "Added task \nwith name: {}, \nwith startTime: {}, \nwith "
+      "endTime:{}, \nwith startImportance:{}, \nwith endImportance:{}\n",
+      task.name, formatTime(task.startTime), formatTime(task.endTime),
+      task.startImportance, task.endImportance);
+}
+
 void add(std::vector<std::string> splitCommand, GlobalState &state) {
   Task taskToAdd;
   std::chrono::local_time<std::chrono::seconds> startDate =
@@ -138,11 +199,11 @@ void add(std::vector<std::string> splitCommand, GlobalState &state) {
         taskToAdd.endImportance = std::stoi(argVal);
       } else if (arg == "-n") {
 
-        std::vector<Task>::iterator taskToEdit = std::find_if(
-            state.tasksList.begin(), state.tasksList.end(),
-            [&](const Task &t) { return t.name == splitCommand[1]; });
+        std::vector<Task>::iterator taskToEdit =
+            std::find_if(state.tasksList.begin(), state.tasksList.end(),
+                         [&](const Task &t) { return t.name == argVal; });
         if (taskToEdit != state.tasksList.end()) {
-          throw std::runtime_error("Task already exists: " + splitCommand[1]);
+          throw std::runtime_error("Task already exists: " + argVal);
         };
         taskToAdd.name = argVal;
       } else {
@@ -204,6 +265,12 @@ void edit(std::vector<std::string> splitCommand, GlobalState &state) {
       } else if (arg == "-ei") {
         taskToEdit->endImportance = std::stoi(argVal);
       } else if (arg == "-n") {
+        std::vector<Task>::iterator newTask =
+            std::find_if(state.tasksList.begin(), state.tasksList.end(),
+                         [&](const Task &t) { return t.name == argVal; });
+        if (newTask != state.tasksList.end()) {
+          throw std::runtime_error("Task already exists: " + argVal);
+        };
         taskToEdit->name = argVal;
       } else {
         throw std::runtime_error("invalid argument: " + arg);
