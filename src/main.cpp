@@ -15,20 +15,26 @@
 void updateImportance(GlobalState &state) {
   state.currentTime =
       floor<std::chrono::seconds>(std::chrono::system_clock::now());
-  state.localTime =
+  state.currentTime =
       std::chrono::zoned_time{std::chrono::current_zone(), state.currentTime}
           .get_local_time();
   for (size_t i = 0; i + 1 <= state.tasksList.size(); i++) {
     if (!state.tasksList.empty() &&
-        (state.tasksList[i].endTime - state.tasksList[i].startTime).count() !=
-            0) {
-      long double slope =
-          (state.tasksList[i].endImportance -
-           state.tasksList[i].startImportance) /
-          (state.tasksList[i].endTime - state.tasksList[i].startTime).count();
+        (state.tasksList[i].endTime.get_local_time() -
+         state.tasksList[i].startTime.get_local_time())
+                .count() != 0) {
+      long double slope = (state.tasksList[i].endImportance -
+                           state.tasksList[i].startImportance) /
+                          (state.tasksList[i].endTime.get_local_time() -
+                           state.tasksList[i].startTime.get_local_time())
+                              .count();
       state.tasksList[i].importance =
-          slope * state.currentTime.time_since_epoch().count() -
-          slope * state.tasksList[i].startTime.count() +
+          slope *
+              state.currentTime.get_local_time().time_since_epoch().count() -
+          slope * state.tasksList[i]
+                      .startTime.get_local_time()
+                      .time_since_epoch()
+                      .count() +
           state.tasksList[i].startImportance;
     }
   }
