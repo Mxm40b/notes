@@ -6,18 +6,20 @@
 #include <vector>
 
 namespace cmds {
-void help(std::vector<std::string> splitCommand, GlobalState &state);
+
+std::vector<taskArgPair> argsVector(std::vector<std::string> splitCommand);
+void help(std::vector<taskArgPair> args, GlobalState &state);
 struct ExitCommand : public std::exception {
   const char *what() const noexcept override { return "Exit command issued"; }
 };
 
-void exit(std::vector<std::string> splitCommand, GlobalState &state);
+void exit(std::vector<taskArgPair> args, GlobalState &state);
 
-void add(std::vector<std::string> splitCommand, GlobalState &state);
+void add(std::vector<taskArgPair> args, GlobalState &state);
 
-void edit(std::vector<std::string> splitCommand, GlobalState &state);
+void edit(std::vector<taskArgPair> args, GlobalState &state);
 
-void list(std::vector<std::string> splitCommand, GlobalState &state);
+void list(std::vector<taskArgPair> args, GlobalState &state);
 
-void current(std::vector<std::string> splitCommand, GlobalState &state);
+void current(std::vector<taskArgPair> args, GlobalState &state);
 } // namespace cmds

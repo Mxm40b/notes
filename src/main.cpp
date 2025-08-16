@@ -5,8 +5,10 @@
 #include <iostream>
 #include <print>
 #include <stdexcept>
+#include <string>
 #include <string_view>
 #include <unordered_map>
+#include <vector>
 
 #include "GlobalState.hpp"
 #include "commands.hpp"
@@ -40,11 +42,11 @@ void updateImportance(GlobalState &state) {
   }
 };
 
-void executeCommand(std::vector<std::string> splitCommand, GlobalState &state) {
-  if (!state.cmdMap.contains(splitCommand[0]))
-    throw std::runtime_error(
-        std::format("Couldnt find command {}", splitCommand[0]));
-  state.cmdMap[splitCommand[0]](splitCommand, state);
+void executeCommand(std::string command, std::vector<taskArgPair> args,
+                    GlobalState &state) {
+  if (!state.cmdMap.contains(command))
+    throw std::runtime_error(std::format("Couldnt find command {}", command));
+  state.cmdMap[command](args, state);
 };
 
 void prompt(GlobalState &state) {
@@ -60,8 +62,14 @@ void prompt(GlobalState &state) {
   while (iss >> word) {
     splitCommand.push_back(word);
   }
+  std::string command = splitCommand[0];
+  splitCommand.erase(splitCommand.begin());
 
-  executeCommand(splitCommand, state);
+  std::vector<taskArgPair> args;
+
+  args = cmds::argsVector(splitCommand);
+
+  executeCommand(command, args, state);
 }
 
 void handleInterrupt(int signal) {
@@ -75,7 +83,6 @@ int main() {
   GlobalState state{};
   state.tasksList.emplace_back();
   auto &cmdMap = state.cmdMap;
-  cmdMap["help"] = cmds::help;
   cmdMap["help"] = cmds::help;
   cmdMap["exit"] = cmds::exit;
   cmdMap["quit"] = cmds::exit;

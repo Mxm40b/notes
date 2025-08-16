@@ -5,13 +5,36 @@
 #include <chrono>
 #include <exception>
 #include <format>
+#include <istream>
 #include <print>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <vector>
 
 namespace cmds {
+
+std::vector<taskArgPair> argsVector(std::vector<std::string> splitCommand) {
+  std::vector<taskArgPair> argsVector;
+  while (!splitCommand.empty()) {
+    if (splitCommand[0][0] != '-') {
+      argsVector.push_back(taskArgPair{.argValue = splitCommand[0]});
+      splitCommand.erase(splitCommand.begin());
+    } else if (splitCommand.size() >= 2) {
+      if (splitCommand[1][0] != '-') {
+        argsVector.push_back(
+            taskArgPair{.arg = splitCommand[0], .argValue = splitCommand[1]});
+        splitCommand.erase(splitCommand.begin());
+        splitCommand.erase(splitCommand.begin());
+      }
+    } else {
+      argsVector.push_back(taskArgPair{.arg = splitCommand[0]});
+      splitCommand.erase(splitCommand.begin());
+    }
+  }
+  return argsVector;
+}
 
 Task &findTask(std::string name, GlobalState &state) {
   auto findByName =
@@ -55,30 +78,37 @@ bool isValidDate(std::chrono::year year, int month_int, int day_int) {
   return ymd.ok();
 }
 
-void help(std::vector<std::string> splitCommand, GlobalState &state) {
-  std::println("This is the help message.\n"
-               "To exit, try `exit`.\n"
-               "To list commands, "
-               "try `ls`.\n");
+void help(std::vector<taskArgPair> args, GlobalState &state) {
+  std::println(
+      "This is the help message.\n"
+      "To exit, try `exit`.\n"
+      "To list tasks, "
+      "try `ls`.\n"
+      "to add a task, use `add [parameters: -n for name, -si for start "
+      "importance, \n-ei for end importance, -st for start time, -et for end "
+      "time, \n-sd for start date, -ed for end date]`\n"
+      "to edit a task, use `edit [task name] [parameters: -n for name, \n-si "
+      "for "
+      "start importance, -ei for end importance, -st for start time, \n-et for "
+      "end time, -sd for start date, -ed for end date]`");
 };
 
-void exit(std::vector<std::string> splitCommand, GlobalState &state) {
+void exit(std::vector<taskArgPair> args, GlobalState &state) {
   throw ExitCommand{};
 }
 
-void list(std::vector<std::string> splitCommand, GlobalState &state) {
+void list(std::vector<taskArgPair> args, GlobalState &state) {
   for (size_t i = 0; i < state.tasksList.size(); i++) {
     std::println("Task number: {}", i);
     showTask(state.tasksList[i]);
   }
 };
 
-void editTask(std::vector<std::string> splitArgs, Task &task) {}
+void editTask(std::vector<taskArgPair> args, Task &task) {}
 
-void add(std::vector<std::string> splitCommand, GlobalState &state) {
+void add(std::vector<taskArgPair> args, GlobalState &state) {
   Task newTask;
-  splitCommand.erase(splitCommand.begin());
-  editTask(splitCommand, newTask);
+  editTask(args, newTask);
   try {
     findTask(newTask.name, state);
   } catch (const std::runtime_error &e) {
@@ -92,17 +122,21 @@ void add(std::vector<std::string> splitCommand, GlobalState &state) {
   throw std::runtime_error("Task already exists");
 }
 
-void edit(std::vector<std::string> splitCommand, GlobalState &state) {
-  splitCommand.erase(splitCommand.begin());
-  Task &taskToEdit = findTask(splitCommand[0], state);
-  splitCommand.erase(splitCommand.begin());
-  editTask(splitCommand, taskToEdit);
+void edit(std::vector<taskArgPair> args, GlobalState &state) {
+  if (args[0].arg[0] == '-') {
+    throw std::runtime_error("First argument must be the name of the task to "
+                             "edit, not a parameter. \nsee `help` for further "
+                             "information on usage.");
+  }
+  Task &taskToEdit = findTask(args[0].argValue, state);
+  args.erase(args.begin());
+  editTask(args, taskToEdit);
 }
 
-void remove(std::vector<std::string> splitCommand, GlobalState &state) {}
-void complete(std::vector<std::string> splitCommand, GlobalState &state) {}
+void remove(std::vector<taskArgPair> splitCommand, GlobalState &state) {}
+void complete(std::vector<taskArgPair> splitCommand, GlobalState &state) {}
 
-void current(std::vector<std::string> splitCommand, GlobalState &state) {
+void current(std::vector<taskArgPair> splitCommand, GlobalState &state) {
   std::println("{}", formatTime(state.currentTime));
 };
 
